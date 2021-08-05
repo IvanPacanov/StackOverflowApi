@@ -1,0 +1,26 @@
+<div class="gridContent">
+  <form class="form" (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="form__content"> 
+        <div class="login-form__header">Wprowadź ilość elementów w "populacji"</div>
+        <div class="login_center">
+        <input class="size-form" type="text" name="dc_userLog" placeholder="1-100" [(ngModel)]="size" 
+        id="in_size" 
+        name="in_size" 
+        #in_size="ngModel"
+        (input)="validate(in_size)">
+        <button class="login-form__Button" type="submit">Pobierz dane</button>
+    </div>
+</div>
+</form>
+<div *ngIf="(info)">
+  Pobrane dane dla domyślnej wartości 100
+</div>  
+
+
+  <app-tag-card
+    *ngFor="let tag of popularTags | async"
+    [tag]="tag"
+  ></app-tag-card>
+</div>
+
+
