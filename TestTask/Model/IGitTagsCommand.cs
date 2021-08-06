@@ -11,7 +11,7 @@ namespace TestTask.Model
         public interface IGitTagsCommand
     {
         Task<IEnumerable<ElementToReturn>> GetMostPopularTag();
-        Task<IEnumerable<ElementToReturn>> GetMostPopularTagBySize(int size);
+        Task<IEnumerable<ElementToReturn>> GetMostPopularTagByFilter(ConfigureToSearch configure);
     }
    
 }

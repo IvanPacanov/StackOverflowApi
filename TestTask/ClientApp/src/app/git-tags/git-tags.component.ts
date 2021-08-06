@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { NgModel } from '@angular/forms';
 import { GitTagServerService } from '../services/git-tag-server.service';
+import { ConfigureToSearch } from '../entities/configureToSearch';
 
 @Component({
   selector: 'app-git-tags',
@@ -12,12 +13,11 @@ import { GitTagServerService } from '../services/git-tag-server.service';
 })
 export class GitTagsComponent {
   popularTags: Observable<MostPopularTag[]>;
-  size: number;
+  configureToSearch: Partial<ConfigureToSearch> = {};
+  sizeOfEle: number = 100;
   info:boolean = true;
   constructor(private http: GitTagServerService) { 
-
-    
-    this.popularTags = this.http.getTagsOfSize(30);
+    this.popularTags = this.http.getTags();
   }
 
 
@@ -28,26 +28,28 @@ export class GitTagsComponent {
       if(value.value > 100)
       {
         value.reset();
-        this.size = 100;
+        this.configureToSearch.size = 100;
       }
       else if(value.value <= 0)
       {
         value.reset();
-        this.size = 1;
+        this.configureToSearch.size = 1;
       }
     }else{
       value.reset();
     }  
   }
   onSubmit() {
-    if(this.size == null)
+    if(this.configureToSearch.size == null)
     {
       this.info = true;
     }else{
       this.info = false;
     }
-    this.popularTags = this.http.getTagsOfSize(this.size);
+    this.sizeOfEle = this.configureToSearch.size;
+    this.popularTags = this.http.getTagsOfSize(this.configureToSearch as ConfigureToSearch);
   }
+
   isNumeric(value) {
     return /^\d+$/.test(value);
 }

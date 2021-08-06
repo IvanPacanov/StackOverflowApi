@@ -83,7 +83,20 @@ font-weight: 300;
 
 
 
+.card .end{
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+  width: 200px;
+  height: 20px;
+}
 
+.card .end p{
+  text-align: center;
+  bottom: -10px;
+  position: absolute; 
+  color: rgb(182, 32, 32);
+}
 
 
 .card .values .percent{

@@ -1,4 +1,40 @@
-.gridContent {
+
+.gridContent .container{
+    min-height: 300px;
+    pad: 70px 40px;
+    background: linear-gradient(45deg, #fead06, #c00def);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    position: relative; 
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.gridContent .container .info{
+    position: absolute; 
+                bottom: 0; 
+                color: rgb(121, 0, 24);
+                height: 50px; 
+                justify-content: center;
+                align-items: center; 
+}
+
+.gridContent .container .infomain{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align:center;
+    justify-content: center;
+    align-items: center; 
+    color: rgb(255, 255, 255);
+}
+
+.gridContent .content {
     min-height: 100vh;
     overflow-x: hidden;
     position: absolute;
@@ -13,6 +49,45 @@
 }
 
 
-.form{
-    width: 400px;
+
+.values .vl {
+    grid-row: 2;
+    border-left: 4px solid #9bdc28;
+    margin-top: -20px;
+    height: 100% + 30px;
+    margin-left: 8px;
+  }
+  
+
+  
+.gridContent .container .form{
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    text-align:center;
+    justify-content: center;
+    align-items: center; 
+    color: rgb(255, 255, 255);
+
+}
+
+  
+  
+
+.subButton{
+    padding: 10px 30px;
+    color: #ffffff;
+    font-weight: bold;
+    background: linear-gradient(45deg, #FF9482,#7D77FF );
+    height: 10%;
+    margin-left: 10px;
+    text-align:center;
+    justify-content: center;
+    align-items: center; 
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.subButton:active{
+    background: linear-gradient(45deg,#7D77FF,  #FF9482 );
 }

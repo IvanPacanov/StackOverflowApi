@@ -1,7 +1,28 @@
 
+ <div class="card" style="background: rgb(139, 172, 243);" *ngIf="(count % size == 0); else anotherdiv">
+  <div class="content">
+    <h3>{{ tag.nameTag }}</h3>      
+  </div>
+  
+  
+  <div class="values" >
+    <div class="popular">
+      <h2>{{ tag.popular }}</h2> 
+      <p>Popularność</p> 
+    </div>
+    <div class="vl"></div>
+    <div class="percent">           
+        <h2>{{tag.popularPercent}}<span>%</span></h2>  
+        <p>Procentowy udział</p>        
+    </div>
+  </div>
+  <div class="end">
+    <p>Koniec Populacji!</p> 
+  </div>
+</div>
 
-
-  <div class="card">
+<ng-template #anotherdiv>
+  <div class="card" *ngIf="count % size">
     <div class="content">
       <h3>{{ tag.nameTag }}</h3>      
     </div>
@@ -17,5 +38,6 @@
           <h2>{{tag.popularPercent}}<span>%</span></h2>  
           <p>Procentowy udział</p>        
       </div>
+    </div>
   </div>
-  </div>
+</ng-template>

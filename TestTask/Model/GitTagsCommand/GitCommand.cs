@@ -25,10 +25,10 @@ namespace TestTask.Model.GitTagsCommand
             return (gitAdapter as Tags).GetTags();
         }
 
-        public Task<IEnumerable<ElementToReturn>> GetMostPopularTagBySize(int size)
+        public Task<IEnumerable<ElementToReturn>> GetMostPopularTagByFilter(ConfigureToSearch configure)
         {
             gitAdapter = new Tags();
-            return (gitAdapter as Tags).GetTagsBySize(size);
+            return (gitAdapter as Tags).GetTagsBySize(configure);
         }
     }
 }

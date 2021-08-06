@@ -24,18 +24,20 @@ namespace TestTask.Controllers
             this.gitTagsCommand = gitTagsCommand ?? throw new ArgumentNullException(nameof(gitTagsCommand));
         }
 
+        [Route("[action]")]
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Item>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Item>>> Get()
+        public async Task<ActionResult<IEnumerable<Item>>> GetTagByDefaulValue()
         {
             return Ok(await gitTagsCommand.GetMostPopularTag());
         }
 
-        [HttpGet("{size}", Name = "GetOfSizeTag")]
+        [Route("[action]")]
+        [HttpPost]
         [ProducesResponseType(typeof(IEnumerable<Item>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Item>>> Get(int size)
+        public async Task<ActionResult<IEnumerable<Item>>> GetWithFilter([FromBody] ConfigureToSearch configure)
         {
-            return Ok(await gitTagsCommand.GetMostPopularTag());
+            return Ok(await gitTagsCommand.GetMostPopularTagByFilter(configure));
         }
     }
 }

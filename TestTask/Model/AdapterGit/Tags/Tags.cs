@@ -47,10 +47,27 @@ namespace TestTask.Model.AdapterGit.Tags
             return el;
         }
 
-        internal Task<IEnumerable<ElementToReturn>> GetTagsBySize(int size)
+        internal async Task<IEnumerable<ElementToReturn>> GetTagsBySize(ConfigureToSearch configure)
         {
-            pageSize = size;
-            return null;
+            HttpResponseMessage response = await client.GetAsync($"tags?page={page}&pagesize={configure.size}&order={configure.order}&sort={configure.sort}&site=stackoverflow");
+            List<ElementToReturn> el = new List<ElementToReturn>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                Root root = (i % 2 == 0) ? await Get1000TagsAsync() : await Get1000TagsAsync1();
+                double sum = root.items.Sum(x => x.count);
+                el.AddRange(root.items.Select(i =>
+                {
+                    return new ElementToReturn
+                    {
+                        nameTag = i.name,
+                        popular = i.count,
+                        popularPercent = Math.Round((i.count / sum) * 100, 2)
+                    };
+                }));
+            }
+
+            return el;
         }
 
         private async Task<Root> GetTagsAsync()
