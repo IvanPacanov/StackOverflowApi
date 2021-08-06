@@ -22,13 +22,13 @@ namespace TestTask.Model.GitTagsCommand
         public Task<IEnumerable<ElementToReturn>> GetMostPopularTag()
         {
             gitAdapter = new Tags();
-            return (gitAdapter as Tags).GetTags();
+            return (gitAdapter as Tags).GetResponse();
         }
 
         public Task<IEnumerable<ElementToReturn>> GetMostPopularTagByFilter(ConfigureToSearch configure)
         {
             gitAdapter = new Tags();
-            return (gitAdapter as Tags).GetTagsBySize(configure);
+            return (gitAdapter as Tags).GetResponse(configure);
         }
     }
 }

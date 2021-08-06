@@ -10,6 +10,8 @@ namespace TestTask.Entities.GitTag
         public string nameTag { get; set; }
         public int popular { get; set; }
         public double popularPercent { get; set; }
+        public bool IsError { get; set; }
+
 
     }
 }

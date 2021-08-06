@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, Component, DoCheck, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MostPopularTag } from '../../entities/mostPopularTag';
 
 @Component({
@@ -6,17 +6,16 @@ import { MostPopularTag } from '../../entities/mostPopularTag';
   templateUrl: './tag-card.component.html',
   styleUrls: ['./tag-card.component.css']
 })
-export class TagCardComponent implements AfterContentInit {
+export class TagCardComponent {
   @Input() tag: MostPopularTag;
   @Input() count: number;
   @Input() size: number;
+  
  
   constructor() {      
-   
   }
-  ngAfterContentInit(): void {
-   console.log();
-  }
+
+
 
 
 }

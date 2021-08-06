@@ -15,21 +15,24 @@
               name="in_size" 
               #in_size="ngModel"
               (input)="validate(in_size)">
-              <button class="subButton" type="submit">Pobierz dane</button>
+              <button class="login-form__Button" type="submit">Pobierz dane</button>
           </div>
       </div>
       </form>
       <div class="info" *ngIf="(info)">
         Pobrane dane dla domyślnej wartości 100!
-      </div>  
+      </div> 
+
+    
+ 
 </div>
 
 <div class="content">
-  <app-tag-card
-    *ngFor="let tag of popularTags | async; let i = index"
+  <app-tag-card *ngFor="let tag of popularTags; let i = index"
     [tag]="tag" 
     [count] = "i+1" 
     [size] = [(sizeOfEle)]
+    
   ></app-tag-card>
 </div>
 </div>
