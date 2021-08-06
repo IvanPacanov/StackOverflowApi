@@ -3,7 +3,7 @@ Simple webpage made in TypeScript with Angular, and server programmed in ASP.NET
 
 > http://localhost:5000/swagger/index.html --> Show API
 > 
-> http://localhost:5000/index.html --> Run the webpage
+> http://localhost:5000/index.html --> Open the webpage
 
 # Main View
 
