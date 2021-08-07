@@ -31,7 +31,8 @@ namespace TestTask.Model.AdapterGit.Tags
         {
             HttpResponseMessage response = new HttpResponseMessage();
            configure = configure != null ? 
-                ((configure.order != "desc" || configure.order != "asc") ? Configure : configure) : Configure;
+                                            ((configure.order != "desc" || configure.sort != "popular") ? 
+                                                                                                          Configure : configure) : Configure;
             try
             {
                 response = await client.GetAsync($"tags?page={page}&pagesize={configure.size}&order={configure.order}&sort={configure.sort}&site=stackoverflow");
@@ -83,13 +84,13 @@ namespace TestTask.Model.AdapterGit.Tags
         {         
                           
                 double sum = root.items.Sum(x => x.count);
-                el.AddRange(root.items.Select(i =>
+                el.AddRange(root.items.Select(tagStackOverflow =>
                 {
                     return new ElementToReturn
                     {
-                        nameTag = i.name,
-                        popular = i.count,
-                        popularPercent = Math.Round((i.count / sum) * 100, 2),
+                        nameTag = tagStackOverflow.name,
+                        popular = tagStackOverflow.count,
+                        popularPercent = Math.Round((tagStackOverflow.count / sum) * 100, 2),
                         IsError = isError
                     };
                 }));

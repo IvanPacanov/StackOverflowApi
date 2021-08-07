@@ -14,7 +14,8 @@ import { first } from 'rxjs/operators';
 })
 export class GitTagsComponent {
   popularTags: MostPopularTag[];
-  configureToSearch: Partial<ConfigureToSearch> = {size: 100};
+  configureToSearch: Partial<ConfigureToSearch> = {
+    size: 100, order: "desc", sort: "popular" };
   sizeOfEle: number = 100;
   info:boolean = true;
   newIsError:boolean = false;
