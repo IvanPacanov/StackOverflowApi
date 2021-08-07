@@ -22,6 +22,8 @@ export class GitTagsComponent {
   constructor(private http: GitTagServerService) { 
   this.http.getTags().subscribe(result => {
     this.popularTags = result
+    console.log(result)
+    if(result != null)
     if(result[1].isError)
         this.myFunction()
   });
@@ -65,6 +67,8 @@ console.log(val)
       this.info = false;
     }
     this.sizeOfEle = this.configureToSearch.size;
+    this.popularTags = null;
+
     this.http.getTagsOfSize(this.configureToSearch as ConfigureToSearch).subscribe(result => {
       this.popularTags = result
       if(result[1].isError)

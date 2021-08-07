@@ -29,7 +29,7 @@ namespace TestTask.Controllers
         [ProducesResponseType(typeof(IEnumerable<Item>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Item>>> GetTagByDefaulValue()
         {
-            return Ok(await gitTagsCommand.GetMostPopularTag());
+           return Ok(await gitTagsCommand.GetMostPopularTag());
         }
 
         [Route("[action]")]

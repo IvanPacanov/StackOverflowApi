@@ -17,7 +17,6 @@ namespace TestTask.Model.AdapterGit
         {
             FindVersion();
             this.client = new HttpClient();
-
             client.BaseAddress = new Uri(url);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");   

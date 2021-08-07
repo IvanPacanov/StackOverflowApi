@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { GitTagsComponent } from './git-tags/git-tags.component';
 import { TagCardComponent } from './git-tags/tag-card/tag-card.component';
+import { LoadModuleComponent } from './load-module/load-module.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { TagCardComponent } from './git-tags/tag-card/tag-card.component';
     NavMenuComponent,
     HomeComponent,
     GitTagsComponent,  
-    TagCardComponent
+    TagCardComponent, LoadModuleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

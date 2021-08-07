@@ -91,3 +91,16 @@
 .subButton:active{
     background: linear-gradient(45deg,#7D77FF,  #FF9482 );
 }
+.loadContext{
+    margin: auto;
+    width: 10%;
+    padding: 15px;
+}
+.loadContext .loaderBox{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    text-align:center;
+    justify-content: center;
+    align-items: center; 
+}

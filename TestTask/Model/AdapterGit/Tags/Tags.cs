@@ -30,15 +30,28 @@ namespace TestTask.Model.AdapterGit.Tags
         public async Task<IEnumerable<ElementToReturn>> GetResponse(ConfigureToSearch configure = null)
         {
             HttpResponseMessage response = new HttpResponseMessage();
-           configure = configure != null ? 
-                                            ((configure.order != "desc" || configure.sort != "popular") ? 
-                                                                                                          Configure : configure) : Configure;
+            List<ElementToReturn> returnList = new List<ElementToReturn>();
+
+            configure = configure != null ? 
+            ((configure.order != "desc" || configure.sort != "popular") ? 
+            Configure : configure) : Configure;
+
+            GetResponseFromAPI(ref response, configure); 
+
+            if (response != null && response.IsSuccessStatusCode)
+               await GetDataFromAPI(response, returnList, configure);
+            else
+                GetRawData(returnList);
+            return (await Task.FromResult(returnList));
+        }
+
+        private void GetResponseFromAPI(ref HttpResponseMessage response, ConfigureToSearch configure)
+        {
             try
             {
-                response = await client.GetAsync($"tags?page={page}&pagesize={configure.size}&order={configure.order}&sort={configure.sort}&site=stackoverflow");
-
+                response = client.GetAsync($"tags?page={page++}&pagesize={configure.size}&order={configure.order}&sort={configure.sort}&site=stackoverflow").Result;
             }
-            catch( HttpRequestException ex)
+            catch (HttpRequestException ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -46,13 +59,6 @@ namespace TestTask.Model.AdapterGit.Tags
             {
                 Console.WriteLine(ex.Message);
             }
-
-            List<ElementToReturn> returnList = new List<ElementToReturn>();
-            if (response.IsSuccessStatusCode)
-               await GetDataFromAPI(response, returnList, configure);
-            else
-                GetRawData(returnList);
-            return (await Task.FromResult(returnList));
         }
 
         private async Task GetDataFromAPI(HttpResponseMessage response, List<ElementToReturn> el, ConfigureToSearch configure)
@@ -65,8 +71,9 @@ namespace TestTask.Model.AdapterGit.Tags
 
                 stream.CopyTo(ms);
                 Change(JsonConvert.DeserializeObject<Root>(Encoding.Default.GetString(ms.ToArray())), ref el);
-                
-                response = await client.GetAsync($"tags?page={++page}&pagesize={configure.size}&order={configure.order}&sort={configure.sort}&site=stackoverflow");
+                string c = Encoding.Default.GetString(ms.ToArray());
+
+                GetResponseFromAPI(ref response, configure);
             }
             while (el.Count < 1000);
         } 
