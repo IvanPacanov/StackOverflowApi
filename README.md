@@ -13,3 +13,8 @@ Simple webpage made in TypeScript with Angular, and server programmed in ASP.NET
 # End of "population"
 
 ![image](https://user-images.githubusercontent.com/36520665/128521166-af0e0d6b-2a02-41d6-95e2-cd80b441ccf0.png)
+
+
+# Load data from API
+
+![image](https://user-images.githubusercontent.com/36520665/128613251-07d18297-5460-4811-84b3-2bfc5cd55bfd.png)
